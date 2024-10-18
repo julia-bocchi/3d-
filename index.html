@@ -5,174 +5,113 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        *{
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            list-style: none;
-        }
         body{
             display: flex;
             align-items: center;
             justify-content: center;
             flex-direction: column;
             height: 100vh;
-            background-color: #9795f0;
-        }
-       
-        .shell{
-            display: flex;
-            align-items: center;
-            position: relative;
-            padding: 130px 0;
-            
-        }
-        .carousel{
-            position: relative;
-            width: 520px;
-            height: 500px;
-            padding-top: 150px;
-            perspective: 300px;
-        }
-      
-        .arrows{
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            padding: 10px;
-            position: absolute;
-            right: 15px;
-        }
-        .up,.down{
-            margin: 5px 0;
-            padding: 5px;
-            width: 50px;
-            height: 50px;
-            border: 3px solid rgb(255, 255, 255);
-            border-radius: 10px;
-            background-color: #ffffff61;
-            color: #fff;
-            transition: .3s;
-        }
-        .up:hover,.down:hover{
-            border-color: #fff;
-            color: #9795f0;
-        }
-        .boxs{
-            width: 100%;
-            height: 300px;
-            position: absolute;
-            transform-style: preserve-3d;
-            transition: 1s;
-        }
-        .box{
-            margin: 0px;
-            position: absolute;
-            width: 520px;
-            height: 300px;
-            border: 2px solid white;
-            border-radius: 10px;
             overflow: hidden;
-            opacity: .7;
         }
-        .box img{
+        .shell{
+            position: relative;
+            width: 60vw;
+            height: 60vh;
+            max-width: 380px;
+            max-height: 250px;
+            margin: 0;
+            color: white;
+            perspective: 1000px;
+            transform-origin: center;
+        }
+        .content{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
             width: 100%;
             height: 100%;
-            transform: translateY(-0px);
+            transform-origin: center;
+            transform-style:preserve-3d;
+            transform: translateZ(-35vw) rotateY(0);
+            transition: 1s;
         }
-        .box.selected{
-            border-color: goldenrod;
-            border-width: 5px;
-            opacity: 1;
+        
+        .item{
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            max-width: 380px;
+            max-height: 250px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+            border-radius: 6px;
+            background-size: cover;
+            -webkit-box-reflect: below 25px -webkit-linear-gradient(transparent 50%,rgba(255,255,255,0.3));
         }
+        .item:nth-child(1){
+            background-image: url(./img/100468452_p0.jpg);
+            transform: rotateY(0) translateZ(35vw);
+        }
+        .item:nth-child(2){
+            background-image: url(./img/116767804_p0.jpg);
+            transform: rotateY(120deg) translateZ(35vw);
+        }
+        .item:nth-child(3){
+            background-image: url(./img/122027816_p0.png);
+            transform: rotateY(240deg) translateZ(35vw);
+        }
+  
     </style>
 </head>
 <body>
     <div class="shell">
-        <div class="carousel">
-            <ol class="boxs">
-                <li class="box">
-                    <img src="img/100468452_p0.jpg">
-                </li>
-                <li class="box">
-                    <img src="img/122027816_p0.png">
-                </li>
-                <li class="box">
-                    <img src="img/微信图片_20241017153249.jpg">
-                </li>
-                <li class="box">
-                    <img src="img/微信图片_20241017153132.jpg">
-                </li>
-                <li class="box">
-                    <img src="img/100468452_p0.jpg">
-                </li>
-                <li class="box">
-                    <img src="img/100468452_p0.jpg">
-                </li>
-                <li class="box">
-                    <img src="img/100468452_p0.jpg">
-                </li>
-                <li class="box">
-                    <img src="img/微信图片_20241017152759.jpg">
-                </li>
-                <li class="box">
-                    <img src="img/微信图片_20241017153132.jpg">
-                </li>
-                <li class="box">
-                    <img src="img/116767804_p0.jpg">
-                </li>
-                <li class="box">
-                    <img src="img/GWxoTjlXIAAqvO1.jpg">
-                </li>
-            </ol>
+        <div class="content">
+            <div class="item"></div>
+            <div class="item"></div>
+            <div class="item"></div>
         </div>
     </div>
-    <div class="arrows">
-        <button class="up"><i>&#x21e7;</i></button>
-        <button class="down"><i>&#x21e9;</i></button>
-    </div>
-    <script>
-        const shell = document.querySelector('.boxs');
-        const cells  =document.querySelectorAll('.box');
-        const cellWidth = shell.offsetWidth;
-        const cellHeight = shell.offsetHeight;
-        const cellSize = cellWidth;
-        const cellCount = cells.length;
-        const radius = Math.round((cellSize / 1.8) / Math.tan(Math.PI / cellCount));
-        const theta = 360 / cellCount;
-        let selectedIndex = 0;
-        function rotateshell(){
-            const angle = theta * selectedIndex * -1;
-            shell.style.transform = 'translateZ(' + -radius + 'px)' + 'rotateX(' + -angle + 'deg)';
-            cells.forEach((cell,index) => {
-                if(index === selectedIndex % cellCount){
-                    cell.classList.add('selected');
-                }else{
-                    cell.classList.remove('selected');
-                }
-            })
-        }
-        function selectPrev(){
-            selectedIndex = (selectedIndex - 1 + cellCount) % cellCount;
-            rotateshell();
-        }
-        function selectNext(){
-            selectedIndex = (selectedIndex + 1) % cellCount;
-            rotateshell();
-        }
-        const prevButton = document.querySelector('.up');
-        const nextButton = document.querySelector('.down');
-        prevButton.addEventListener('click',selectPrev);
-        nextButton.addEventListener('click',selectNext);
-        function initshell(){
-            cells.forEach((cell,i) => {
-                const cellAngle  =theta * i;
-                cell.style.transform = 'rotateX(' + -cellAngle +'deg) translateZ(' + radius + 'px)'; 
-            })
-            rotateshell();
-        }
-        initshell();
-    </script>
 </body>
+<script>
+        var content = document.querySelector('.content');//获取content用于旋转
+        var items = document.querySelectorAll('.item');//获取图片
+        var animationInterval;//定时器
+        let  angle = 0;//选择角度
+        const theta = 360 / items.length;//每次增加角度
+        function rotateCarousel() {
+           angle += theta//变化
+            //超出360，重置
+            if (angle >= 360) {
+                angle -= 360;
+            }
+            content.style.transform = 'translateZ(' + -35 + 'vw)' + 'rotateY(' + -angle + 'deg)';
+            content.style.transition = 'transform 1s';//是变化更流畅
+        }
+
+        function startAnimation() {
+            //若间隔器不在则添加
+            if (!animationInterval) {
+                animationInterval = setInterval(rotateCarousel, 3000);
+            }
+        }
+
+        function pauseAnimation() {
+            //移除间隔器
+            if (animationInterval) {
+                clearInterval(animationInterval);
+                animationInterval = null;
+            }
+        }
+        //图片监听事件
+        items.forEach(function(item) {
+            item.addEventListener('mouseover', function() {
+                pauseAnimation();
+            });
+            item.addEventListener('mouseout', function() {
+                startAnimation();
+            });
+        });
+        
+        startAnimation(); // Start the animation when the page loads
+</script>
 </html>
