@@ -80,10 +80,7 @@
         const theta = 360 / items.length;//每次增加角度
         function rotateCarousel() {
            angle += theta//变化
-            //超出360，重置
-            if (angle >= 360) {
-                angle -= 360;
-            }
+            
             content.style.transform = 'translateZ(' + -35 + 'vw)' + 'rotateY(' + -angle + 'deg)';
             content.style.transition = 'transform 1s';//是变化更流畅
         }
