@@ -11,7 +11,20 @@
             justify-content: center;
             flex-direction: column;
             height: 100vh;
-            overflow: hidden;
+            background-image:linear-gradient(135deg,#FF6FD8 10%,#3813C2 100%)
+            /* overflow: hidden; */
+        }
+        .left{
+            font-size: 450%;
+            writing-mode: vertical-lr;
+            position: absolute;
+            left: 0;
+        }
+        .right{
+            font-size: 450%;
+            writing-mode: vertical-lr;
+            position: absolute;
+            right:  0;
         }
         .shell{
             position: relative;
@@ -49,49 +62,170 @@
             -webkit-box-reflect: below 25px -webkit-linear-gradient(transparent 50%,rgba(255,255,255,0.3));
         }
         .item:nth-child(1){
-            background-image: url(./img/100468452_p0.jpg);
             transform: rotateY(0) translateZ(35vw);
         }
         .item:nth-child(2){
-            background-image: url(./img/116767804_p0.jpg);
-            transform: rotateY(120deg) translateZ(35vw);
+            transform: rotateY(51.4286deg) translateZ(35vw);
         }
         .item:nth-child(3){
-            background-image: url(./img/122027816_p0.png);
-            transform: rotateY(240deg) translateZ(35vw);
+            transform: rotateY(102.8572deg) translateZ(35vw);
         }
-  
+        .item:nth-child(4){
+            transform: rotateY(154.2858deg) translateZ(35vw);
+        }
+        .item:nth-child(5){
+            transform: rotateY(205.7144deg) translateZ(35vw);
+        }
+        .item:nth-child(6){
+            transform: rotateY(257.143deg) translateZ(35vw);
+        }
+        .item:nth-child(7){
+            transform: rotateY(308.5716deg) translateZ(35vw);
+        }
+        #up{
+         position: absolute;
+         left: 27%;
+        width: 50px;
+        height: 250px;
+        line-height: 50px;
+        text-align: center;
+        border-radius: 5px;
+        margin: 0 25px;
+        transition: .5s;
+        cursor: pointer;
+        user-select: none;
+        font-size: 20px;
+        color: #fff;
+        background-color: rgba(0, 0, 0, 0.4);
+        box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
+        
+    }
+    .button {
+        width: 100%;
+        position: absolute;
+        bottom: 64%;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+    }
+    #next{
+         position: absolute;
+         right:  27%;
+        width: 50px;
+        height: 250px;
+        line-height: 50px;
+        text-align: center;
+        border-radius: 5px;
+        margin: 0 25px;
+        transition: .5s;
+        cursor: pointer;
+        user-select: none;
+        font-size: 20px;
+        color: #fff;
+        background-color: rgba(0, 0, 0, 0.4);
+        box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
+        
+    }
+    .button button {
+            opacity: 0;
+        }
+        .button:hover button {
+            opacity: 1;
+        }
+        video{
+            position: absolute;
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+            max-width: 380px;
+            max-height: 250px;
+            z-index: -1;
+        }
+
+          /* #up, #next { 
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            border-radius: 50%;
+            cursor: pointer;
+            user-select: none;
+            font-size: 24px;
+            color: #fff;
+            background-color: rgba(0, 0, 0, 0.4);
+            border: none;
+            outline: none;
+            transition: background-color 0.5s;
+        }
+        #up {
+            left: 10px;
+        }
+        #next {
+            right: 10px;
+        }
+        #up:hover, #next:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        } */
     </style>
 </head>
 <body>
+    <h1 class="left">抱歉,看乐队番</h1>
+    <h1 class="right">就是高人一等</h1>
     <div class="shell">
         <div class="content">
-            <div class="item"></div>
-            <div class="item"></div>
-            <div class="item"></div>
+            <div class="item" onclick="videostart()"><video src="mygo1——使用Clipchamp制作.mp4" id="video" poster="img/下载 (1).png"></video></div>
+            <div class="item" onclick="videostart2()"><video src="无标题视频——使用Clipchamp制作.mp4" id="video2" poster="img/下载 (2).png"></video></div>
+            <div class="item" onclick="videostart3()"><video src="56-波奇扭曲v5.mp4" id="video3" poster="img/下载.png"></video></div>
+            <div class="item" onclick="videostart4()"><video src="mygo2——使用Clipchamp制作.mp4" id="video4" poster="img/下载 (3).png"></video></div>
+            <div class="item" onclick="videostart5()"><video src="动漫素材_轻音少女_镜头提纯素材 - 12.摔倒(Av286002634,P12).mp4" id="video5" poster="img/下载 (4).png"></video></div>
+            <div class="item" onclick="videostart6()"><video src="动漫素材_轻音少女_镜头提纯素材 - 13.摔倒2(Av286002634,P13).mp4" id="video6" poster="img/下载 (5).png"></video></div>
+            <div class="item" onclick="videostart7()"><video src="红绿灯 桃香中指.mp4" id="video7" poster="img/下载 (6).png"></video></div>
         </div>
     </div>
+    <div class="button">
+        <button id="up">《</button>
+        <button id="next">》</button>
+    </div>
+   
 </body>
 <script>
         var content = document.querySelector('.content');//获取content用于旋转
-        var items = document.querySelectorAll('.item');//获取图片
+        var items = document.querySelectorAll('.item');//获取容器
+        var up = document.getElementById('up');
+        var next = document.getElementById('next');
         var animationInterval;//定时器
         let  angle = 0;//选择角度
         const theta = 360 / items.length;//每次增加角度
+
+
+        // 获取视频
+        var video = document.querySelector('#video')
+        var video2 = document.querySelector('#video2')
+        var video3 = document.querySelector('#video3')
+        var video4 = document.querySelector('#video4')
+        var video5 = document.querySelector('#video5')
+        var video6 = document.querySelector('#video6')
+        var video7 = document.querySelector('#video7')
+        var isVideoPlaying = false; // 标记是否有视频正在播放
+
+        //旋转函数
         function rotateCarousel() {
+            if (!isVideoPlaying){
            angle += theta//变化
             
             content.style.transform = 'translateZ(' + -35 + 'vw)' + 'rotateY(' + -angle + 'deg)';
             content.style.transition = 'transform 1s';//是变化更流畅
+            }
         }
-
         function startAnimation() {
             //若间隔器不在则添加
             if (!animationInterval) {
                 animationInterval = setInterval(rotateCarousel, 3000);
             }
         }
-
         function pauseAnimation() {
             //移除间隔器
             if (animationInterval) {
@@ -99,16 +233,169 @@
                 animationInterval = null;
             }
         }
+
+
         //图片监听事件
         items.forEach(function(item) {
+            
             item.addEventListener('mouseover', function() {
+                if (!isVideoPlaying){
                 pauseAnimation();
+                }
             });
             item.addEventListener('mouseout', function() {
+                if (!isVideoPlaying){
                 startAnimation();
+            }
             });
+            
         });
+
+
+    //视频函数
+    function videostart() {
+        if (video.paused) {
+            video.play();
+            pauseAnimation(); // 暂停轮播
+         isVideoPlaying = true; // 标记视频正在播放
+        } else {
+            video.pause();
+            isVideoPlaying = false; // 标记视频停止播放
+            startAnimation(); // 恢复轮播
+        }
+    }
+    video.addEventListener('ended', function() {
+        video.pause();
+        isVideoPlaying = false; // 视频播放结束，标记视频停止播放
+        startAnimation(); // 恢复轮播
+    });
+    
+    function videostart2() {
+        if (video2.paused) {
+            video2.play();
+            pauseAnimation(); // 暂停轮播
+         isVideoPlaying = true; // 标记视频正在播放
+        } else {
+            video2.pause();
+            isVideoPlaying = false; // 标记视频停止播放
+            startAnimation(); // 恢复轮播
+        }
+    }
+    video2.addEventListener('ended', function() {
+        video2.pause();
+        isVideoPlaying = false; // 视频播放结束，标记视频停止播放
+        startAnimation(); // 恢复轮播
+    });
+
+    function videostart3() {
+        if (video3.paused) {
+            video3.play();
+            pauseAnimation(); // 暂停轮播
+            isVideoPlaying = true; // 标记视频正在播放
+        } else {
+            video3.pause();
+            isVideoPlaying = false; // 标记视频停止播放
+            startAnimation(); // 恢复轮播
+        }
+    }
+    video3.addEventListener('ended', function() {
+        video3.pause();
+        isVideoPlaying = false; // 视频播放结束，标记视频停止播放
+        startAnimation(); // 恢复轮播
+    });
+
+    function videostart4() {
+        if (video4.paused) {
+            video4.play();
+            pauseAnimation(); // 暂停轮播
+            isVideoPlaying = true; // 标记视频正在播放
+        } else {
+            video4.pause();
+            isVideoPlaying = false; // 标记视频停止播放
+            startAnimation(); // 恢复轮播
+        }
+    }
+    video4.addEventListener('ended', function() {
+        video4.pause();
+        isVideoPlaying = false; // 视频播放结束，标记视频停止播放
+        startAnimation(); // 恢复轮播
+    });
+
+    function videostart5() {
+        if (video5.paused) {
+            video5.play();
+            pauseAnimation(); // 暂停轮播
+            isVideoPlaying = true; // 标记视频正在播放
+        } else {
+            video5.pause();
+            isVideoPlaying = false; // 标记视频停止播放
+            startAnimation(); // 恢复轮播
+        }
+    }
+    video5.addEventListener('ended', function() {
+        video5.pause();
+        isVideoPlaying = false; // 视频播放结束，标记视频停止播放
+        startAnimation(); // 恢复轮播
+    });
+
+    function videostart6() {
+        if (video6.paused) {
+            video6.play();
+            pauseAnimation(); // 暂停轮播
+            isVideoPlaying = true; // 标记视频正在播放
+        } else {
+            video6.pause();
+            isVideoPlaying = false; // 标记视频停止播放
+            startAnimation(); // 恢复轮播
+        }
+    }
+    video6.addEventListener('ended', function() {
+        video6.pause();
+        isVideoPlaying = false; // 视频播放结束，标记视频停止播放
+        startAnimation(); // 恢复轮播
+    });
+
+    function videostart7() {
+        if (video7.paused) {
+            video7.play();
+            pauseAnimation(); // 暂停轮播
+            isVideoPlaying = true; // 标记视频正在播放
+        } else {
+            video7.pause();
+            isVideoPlaying = false; // 标记视频停止播放
+            startAnimation(); // 恢复轮播
+        }
+    }
+    video7.addEventListener('ended', function() {
+        video7.pause();
+        isVideoPlaying = false; // 视频播放结束，标记视频停止播放
+        startAnimation(); // 恢复轮播
+    });
+
+
         
+
+
+        //按钮
+        function previous() {
+            pauseAnimation();
+            angle = angle - theta;
+            updateTransform();//更新位置
+        }
+        function nextbutton() {
+            pauseAnimation();
+            angle = angle + theta;
+            updateTransform();//更新位置
+        }
+        //更新content
+        function updateTransform() {
+            content.style.transform = 'translateZ(-35vw) rotateY(' + -angle + 'deg)';
+            content.style.transition = 'transform 1s';
+            startAnimation(); // Restart the animation after updating the transform
+        }
+
+        up.addEventListener('click',previous)
+        next.addEventListener('click',nextbutton)
         startAnimation(); // Start the animation when the page loads
 </script>
 </html>
